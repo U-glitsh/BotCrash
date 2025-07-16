@@ -1,0 +1,22 @@
+name: Unzip File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Unzip file
+        run: unzip techgod13.zip -d unzipped_files
+
+      - name: Commit and push unzipped files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add unzipped_files
+          git commit -m "Unzipped techgod13.zip"
+          git push
